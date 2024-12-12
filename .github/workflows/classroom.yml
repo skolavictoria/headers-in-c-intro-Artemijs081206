@@ -13,8 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: compile test
-      id: compile-test
+    - name: test
+      id: test
       uses: classroom-resources/autograding-python-grader@v1
       with:
         timeout: 10
@@ -22,6 +22,6 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        COMPILE-TEST_RESULTS: "${{steps.compile-test.outputs.result}}"
+        TEST_RESULTS: "${{steps.test.outputs.result}}"
       with:
-        runners: compile-test
+        runners: test
